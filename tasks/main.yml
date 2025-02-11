@@ -29,39 +29,3 @@
   delay: 5
   register: result
   until: result is not failed
-
-- name: upgrade pip module
-  pip:
-    name: pip>=21.0.1
-    state: present
-    executable: pip3
-  retries: 30
-  delay: 5
-  register: result
-  until: result is not failed
-
-- name: setuptools latest is higher then 20.1.1
-  pip:
-    name: setuptools>=20.1.1
-    state: present
-    executable: pip3
-  retries: 30
-  delay: 5
-  register: result
-  until: result is not failed
-
-- name: Install pip modules
-  pip:
-    name: "{{ ansible_dev__pip_modules }}"
-    executable: pip3
-    state: present
-  retries: 30
-  delay: 5
-  register: result
-  until: result is not failed
-
-- name: PATH contains /usr/local/bin
-  copy:
-    dest: /etc/profile.d/local.sh
-    content: export PATH=${PATH}:/usr/local/bin
-    mode: 0755
